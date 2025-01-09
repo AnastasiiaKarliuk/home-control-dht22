@@ -5,9 +5,13 @@ from dotenv import load_dotenv
 
 
 def get_weather(api_key: str, city: str) -> dict:
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
-    
-    response = requests.get(url)
+    try:
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+        
+        response = requests.get(url)
+    except Exception as exp:
+        print(exp)
+        return {}
     
     if response.status_code == 200:
 
